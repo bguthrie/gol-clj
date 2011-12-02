@@ -18,13 +18,12 @@
         neighbours   (map (fn [row] (row-neighbours row col-number)) [prev-row current-row next-row])]
     (- (reduce + (flatten neighbours)) current-cell)))
 
-
-; (defn gol-step [grid] 
-;   (map-indexed
-;     (fn [row-number row]
-;       (map-indexed
-;         (fn [col-number cell]
-;           (let [neighbours (all-neighbours grid row-number col-number)]
-;             (if (cell-alive? {:neigbhours neighbours :live (= cell 1)}) 1 0)))
-;           row))
-;     grid))
+(defn gol-step [grid] 
+  (map-indexed
+    (fn [row-number row]
+      (map-indexed
+        (fn [col-number cell]
+          (let [neighbours (all-neighbours row-number col-number grid)]
+            (if (cell-alive? {:neighbours neighbours :live (= cell 1)}) 1 0)))
+          row))
+    grid))

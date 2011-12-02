@@ -24,6 +24,17 @@
   (is (= 2 (all-neighbours 0 1 [[1 0 1 1] [] []])))
   )
 
+(deftest all-neighbours-multiple-rows
+  (is (= 0 (all-neighbours 0 0 [[0 0 0] [0 0 0] [0 0 0]])))
+  (is (= 1 (all-neighbours 0 0 [[0 1 0] [0 0 0] [0 0 0]])))
+  (is (= 2 (all-neighbours 0 0 [[0 1 0] [0 1 0] [0 0 0]])))
+  (is (= 3 (all-neighbours 0 0 [[0 1 0] [1 1 0] [0 0 0]])))
+  (is (= 3 (all-neighbours 0 0 [[1 1 0] [1 1 0] [0 0 0]])))
+  (is (= 3 (all-neighbours 0 0 [[0 1 0] [1 1 0] [0 0 1]])))
+  (is (= 4 (all-neighbours 1 1 [[0 1 0] [1 0 1] [0 1 0]])))
+  (is (= 8 (all-neighbours 1 1 [[1 1 1] [1 1 1] [1 1 1]])))
+  )
+
 (deftest row-neighbours-should-return-subvec
   (is (= []      (row-neighbours []          0)))
   (is (= [0]     (row-neighbours [0]         0)))
@@ -32,12 +43,21 @@
   (is (= [1 0]   (row-neighbours [1 0 1 1]   0)))
   )
 
-; (deftest gol-step-visual-test
-;   (is (= 
-;         [[0 0 0]
-;          [0 0 0]
-;          [0 0 0]]
-;       (gol-step 
-;         [[0 0 0]
-;          [0 1 0]
-;          [0 0 0]]))))
+(deftest gol-step-visual-test
+  (is (= 
+        [[0 0 0]
+         [0 0 0]
+         [0 0 0]]
+      (gol-step 
+        [[0 0 0]
+         [0 1 0]
+         [0 0 0]])))
+  (is (= 
+        [[1 1 0]
+         [1 1 0]
+         [0 0 0]]
+      (gol-step 
+        [[1 1 0]
+         [1 1 0]
+         [0 0 0]])))
+  )
