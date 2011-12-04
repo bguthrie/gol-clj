@@ -1,6 +1,6 @@
 (ns gol-clj.core)
 
-(defn cell-alive? [cell]
+(defn cell-remains-alive? [cell]
   (if (:live cell)
     (not (nil? (some #{(:neighbours cell)} (range 2 4))))
     (= 3 (:neighbours cell))))
@@ -24,6 +24,6 @@
       (map-indexed
         (fn [col-number cell]
           (let [neighbours (all-neighbours row-number col-number grid)]
-            (if (cell-alive? {:neighbours neighbours :live (= cell 1)}) 1 0)))
+            (if (cell-remains-alive? {:neighbours neighbours :live (= cell 1)}) 1 0)))
           row))
     grid))

@@ -3,17 +3,17 @@
   (:use [clojure.test]))
 
 (deftest cell-alive-for-live-cell-should-use-rule
-  (is (false? (cell-alive? { :live true :neighbours 0 })))
-  (is (false? (cell-alive? { :live true :neighbours 1 })))
-  (is (true?  (cell-alive? { :live true :neighbours 2 })))
-  (is (true?  (cell-alive? { :live true :neighbours 3 })))
-  (is (false? (cell-alive? { :live true :neighbours 4 })))
-  (is (false? (cell-alive? { :live true :neighbours 8 })))
+  (is (false? (cell-remains-alive? { :live true :neighbours 0 })))
+  (is (false? (cell-remains-alive? { :live true :neighbours 1 })))
+  (is (true?  (cell-remains-alive? { :live true :neighbours 2 })))
+  (is (true?  (cell-remains-alive? { :live true :neighbours 3 })))
+  (is (false? (cell-remains-alive? { :live true :neighbours 4 })))
+  (is (false? (cell-remains-alive? { :live true :neighbours 8 })))
   )
 
 (deftest cell-alive-for-dead-cell-should-use-rule
-  (is (false? (cell-alive? { :live false :neighbours 2 })))
-  (is (true?  (cell-alive? { :live false :neighbours 3 })))
+  (is (false? (cell-remains-alive? { :live false :neighbours 2 })))
+  (is (true?  (cell-remains-alive? { :live false :neighbours 3 })))
   )
 
 (deftest all-neigbhours-one-row
