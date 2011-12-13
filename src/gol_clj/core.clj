@@ -18,11 +18,15 @@
 (defn live-neighbours-of [existing-points point]
   (intersection existing-points (possible-neighbours-of point)))
 
+(def overpopulated  3)
+(def underpopulated 2)
+(def growth-factor  3)
+
 (defn should-live? [existing-points point]
   (let [neighbours-count (count (live-neighbours-of existing-points point))]
     (if (contains? existing-points point)
-      (contains? (set (range 2 4)) neighbours-count)
-      (= neighbours-count 3))))
+      (>= overpopulated neighbours-count underpopulated)
+      (= neighbours-count growth-factor))))
 
 (defn all-possible-points [existing-points]
   (reduce 
