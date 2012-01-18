@@ -2,7 +2,7 @@
 
 A tested implementation of Conway's Game of Life in Clojure.
 
-# License
+## License (MIT)
 
 Copyright (c) 2012 Brian Guthrie
 
